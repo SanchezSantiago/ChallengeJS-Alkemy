@@ -3,7 +3,8 @@ import {Table} from 'antd';
 import moment from 'moment';
 
 //COMPONENTS
-import EditOperationModal from '../EditOperationModal/EditOperationModal'
+import EditOperationModal from '../EditOperationModal/EditOperationModal';
+import DeleteOperation from '../DeleteOperation/DeleteOperation';
 
 const Axios = require('axios');
 const ExpenseOperationsTable = () => {
@@ -68,8 +69,10 @@ const columns = [
     key: 'action',
     render: (record) => {
       return(
-        <div style={{display: 'flex'}}>
+        <div  style={{display: 'flex'}}>
           <EditOperationModal operationInfo = {record}/>
+          <br />
+          <DeleteOperation operationInfo = {record}/>
         </div>
       )
     }
