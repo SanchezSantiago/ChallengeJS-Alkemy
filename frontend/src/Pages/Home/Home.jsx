@@ -3,6 +3,7 @@ import React from 'react'
 import './Home.css'
 //COMPONENTS
 import BalanceCard from '../../Components/BalanceCard/BalanceCard';
+import OperationsTable from '../../Components/OperationsTable/OperationsTable';
 
 //PAGE 'Home'
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
   <>
     <div className='Home'>
     <BalanceCard/>
+    <OperationsTable/>
     </div>
   </>
   );
