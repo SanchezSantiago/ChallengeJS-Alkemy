@@ -1,0 +1,16 @@
+.Card{
+    width: 450px;
+    font-size: 45px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+    .Card{
+        display: block;
+   
+        width: 320px;
+        font-size: 30px;
+    }
+
+}

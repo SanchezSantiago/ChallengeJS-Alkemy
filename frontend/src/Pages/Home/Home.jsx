@@ -2,7 +2,7 @@ import React from 'react'
 //CSS
 import './Home.css'
 //COMPONENTS
-
+import BalanceCard from '../../Components/BalanceCard/BalanceCard';
 
 //PAGE 'Home'
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
   return (
   <>
     <div className='Home'>
-      <h1>Hi Home</h1>
+    <BalanceCard/>
     </div>
   </>
   );
