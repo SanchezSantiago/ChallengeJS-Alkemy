@@ -2,11 +2,20 @@ import React, {useState, useEffect} from 'react';
 import {Table} from 'antd';
 import moment from 'moment';
 
+//COMPONENTS
+import EditOperationModal from '../EditOperationModal/EditOperationModal'
+
 const Axios = require('axios');
 const IncomeOperationsTable = () => {
   const [data, setData] = useState([]);
 
-
+  const getIncomeOperations = async() =>{
+    const resp = await Axios.get('http://localhost:3001/api/operations/incomes');
+    setData(resp.data);
+  }
+    useEffect(()=>{
+      getIncomeOperations()
+    },[data]);
   
 
 const columns = [
@@ -55,16 +64,21 @@ const columns = [
     dataIndex: 'type',
     key: 'type'
   },
+  {
+    title: 'Action',
+    key: 'action',
+    render: (record) => {
+      return(
+        <div style={{display: 'flex'}}>
+          <EditOperationModal operationInfo = {record}/>
+        </div>
+      )
+    }
+  },
 
 
 ];
-const getIncomeOperations = async() =>{
-  const resp = await Axios.get('http://localhost:3001/api/operations/incomes');
-  setData(resp.data);
-}
-  useEffect(()=>{
-    getIncomeOperations()
-  },[data]);
+
 
 
   return (

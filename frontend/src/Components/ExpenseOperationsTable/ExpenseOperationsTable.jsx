@@ -2,6 +2,9 @@ import React, {useState, useEffect} from 'react';
 import {Table} from 'antd';
 import moment from 'moment';
 
+//COMPONENTS
+import EditOperationModal from '../EditOperationModal/EditOperationModal'
+
 const Axios = require('axios');
 const ExpenseOperationsTable = () => {
   const [data, setData] = useState([]);
@@ -59,6 +62,17 @@ const columns = [
     title: 'Type',
     dataIndex: 'type',
     key: 'type'
+  },
+  {
+    title: 'Action',
+    key: 'action',
+    render: (record) => {
+      return(
+        <div style={{display: 'flex'}}>
+          <EditOperationModal operationInfo = {record}/>
+        </div>
+      )
+    }
   },
 
 
