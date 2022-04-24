@@ -1,29 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Modal, Button, Input, Form, DatePicker, message } from 'antd';
-import {BsFillPencilFill} from 'react-icons/bs'
+import {BsFillPencilFill} from 'react-icons/bs';
+import moment from 'moment';
 const Axios = require('axios');
 
 const EditOperationModal = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
- 
-  const showModal = () => {
-    setIsModalVisible(true);
+  const [operationData, setOperationData] = useState('');
+  const [form] = Form.useForm();
 
+  const showModal = () => {
+    setOperationData({ //Set row values in the operationData
+      concept: props.operationInfo.concept,
+      amount: props.operationInfo.amount,
+      date: props.operationInfo.date,
+    });
+    form.setFieldsValue({ //This will put a default value in every input of the form
+      concept: props.operationInfo.concept,
+      amount: props.operationInfo.amount,
+    });
+    setIsModalVisible(true);
   };
 
 
   const handleCancel = () => {
     setIsModalVisible(false);
+
   };
-  const [operationData, setOperationData] = useState({
-    concept: props.operationInfo.concept,
-    amount: props.operationInfo.amount,
-    date: props.operationInfo.date,
-  });
+
+  
 
   const handleOperationData = (key) => (event) => { //Set operation data
     setOperationData({ ...operationData, [key]: event.target.value });
   };
+  
 
   const handleSubmit = async () =>{ //Put data to the database
     try{
@@ -51,17 +61,19 @@ const EditOperationModal = (props) => {
       name="basic"
       initialValues={{ remember: true }}
       autoComplete="off"
+      form={form}
     >
       <Form.Item
         label="Concept"
         name="concept"
         rules={[{ required: true, message: 'Please input the concept!' }]}
+
       >
         <Input
         type='text'
         
         onChange={handleOperationData('concept')}
-         placeholder={operationData.concept}/>
+        />
       </Form.Item>
 
       <Form.Item
@@ -82,13 +94,13 @@ const EditOperationModal = (props) => {
         rules={[{ required: true, message: 'Please input the date!' }]}
       >
         <DatePicker 
-        onChange={handleDate} 
-        placeholder = {operationData.date}
+        onChange={handleDate}
+        placeholder={moment(operationData.date).utc().format('YYYY/MM/DD')}//For some reason it crashes when i use "default Value"... Anymays
         size='large'
         />
       </Form.Item>
       <Form.Item >
-        <Button type="primary" onClick={handleSubmit}>
+        <Button type="primary" onClick={handleSubmit} onSubmit={handleSubmit}>
           Submit
         </Button>
       </Form.Item>

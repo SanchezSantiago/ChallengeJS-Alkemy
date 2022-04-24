@@ -26,7 +26,7 @@ router.post('/operations', async(req, res) => { //Insert operations in database
         res.send(result);
     });
 });
-router.put('/operations/:id', async(req,res) =>{
+router.put('/operations/:id', async(req,res) =>{ //Update operation
     const {concept, amount, date} = req.body;
     const {id} = req.params;
     const user_id = 45;
@@ -46,7 +46,7 @@ router.put('/operations/:id', async(req,res) =>{
 });
 
 
-router.delete('/operations/:id', async(req, res) =>{
+router.delete('/operations/:id', async(req, res) =>{ //Delete operation
     const {id} = req.params;
     await pool.query('DELETE FROM operation WHERE id = ?', [id], (err, result) => {
         res.send(result)
