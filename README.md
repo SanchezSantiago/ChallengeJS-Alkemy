@@ -13,7 +13,7 @@
 
 ## Operations💲
   The application must contain:
-  ## Operation registration form. It must contain:
+  ### Operation registration form. It must contain:
     ○ Concept📝  
     ○ Amount💸  
     ○ Date📆  
