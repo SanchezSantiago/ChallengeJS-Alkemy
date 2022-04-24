@@ -22,7 +22,7 @@ return (
 <div>
     <Card className='Card'>
         <h5>Your currrent balance:</h5>
-        <h2>${budget}</h2>
+        <h2>${budget? budget : 0}</h2>
     </Card>
 </div>
 )
