@@ -42,4 +42,4 @@ Complying with the instructions, the challenge is finished, but additionally:
  
   Status: Developing 👨‍💻
   
-## So... that's let's code!
+## So... that's, let's code!
