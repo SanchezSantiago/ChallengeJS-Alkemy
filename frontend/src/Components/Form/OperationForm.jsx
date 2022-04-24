@@ -19,6 +19,7 @@ const OperationForm = () => {
   };
 
   const handleSubmit = () =>{ //Post data to the database
+    if(operationData.type === 'Expense'){setOperationData(operationData.amount *= -1)}
     Axios.post('http://localhost:3001/api/operations', operationData);
     message.success('Operation added successfully!');
   };
@@ -49,6 +50,16 @@ const OperationForm = () => {
         onChange={handleOperationData('concept')}
          placeholder='Input concept. Ex: Refrigerator'/>
       </Form.Item>
+      <Form.Item
+        label="Type"
+        name="type"
+        rules={[{ required: true, message: 'Please select one!' }]}
+      >
+        <Radio.Group onChange={handleOperationData('type')}>
+          <Radio value={'Income'}>Income</Radio>
+          <Radio value={'Expense'}>Expense</Radio>
+        </Radio.Group>
+      </Form.Item>
 
       <Form.Item
         label="Amount $"
@@ -73,16 +84,6 @@ const OperationForm = () => {
         />
       </Form.Item>
 
-      <Form.Item
-        label="Type"
-        name="type"
-        rules={[{ required: true, message: 'Please select one!' }]}
-      >
-        <Radio.Group onChange={handleOperationData('type')}>
-          <Radio value={'Income'}>Income</Radio>
-          <Radio value={'Expense'}>Expense</Radio>
-        </Radio.Group>
-      </Form.Item>
 
       <Form.Item >
         <Button type="primary" onClick={handleSubmit} onSubmit={handleSubmit}>

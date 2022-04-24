@@ -62,8 +62,15 @@ router.get('/operations/incomes', async(req, res) => { //Get income type operati
 router.get('/operations/expenses', async(req, res) => { //Get expenses type operations
     await pool.query("SELECT * FROM operation WHERE type = 'Expense' ORDER BY id DESC", (err, result) => {
         res.send(result);
+
     });
 });
+
+router.get('/operations/getBudget', async(req, res) => {
+    await pool.query('SELECT SUM(amount) as budget FROM operation', (err, result) =>{
+        res.send(result)
+    });
+})
 
 
 module.exports = router;
