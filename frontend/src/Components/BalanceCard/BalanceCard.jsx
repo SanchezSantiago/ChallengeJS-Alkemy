@@ -10,9 +10,10 @@ const Axios = require('axios');
 //COMPONENT 'BalanceCard'
 const BalanceCard = () => {
 const [budget, setBudget] = useState([]);
+
 const getBudget = async() =>{
     const resp = await Axios.get('http://localhost:3001/api/operations/getBudget');
-    setBudget(resp.data[0].budget)
+    setBudget((Math.round(resp.data[0].budget * 100) / 100).toFixed(2)); //With the math.round function now have that "money format"
 }
 useEffect(()=>{
     getBudget()
