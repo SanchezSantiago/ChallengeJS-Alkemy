@@ -1,4 +1,4 @@
-# ChallengJS-Alkemy
+# ChallengeJS-Alkemy
   Alkemy's challenge proposes to create an application for personal budget management. The same must allow to create and edit income and expenses of money, and show a balance resulting from the registered operations. Let's code!
 # Hello 👋
   My name is 💀Santiago💀 and in this repository we will do the Alkemy challenge, which proposes the following:
