@@ -13,7 +13,10 @@ const [budget, setBudget] = useState([]);
 
 const getBudget = async() =>{
     const resp = await Axios.get('http://localhost:3001/api/operations/getBudget');
-    setBudget((Math.round(resp.data[0].budget * 100) / 100).toFixed(2)); //With the math.round function now have that "money format"
+    setBudget((Math.round(resp.data[0].budget * 100) / 100).toLocaleString(('en-US', {
+        style: 'currency',
+        currency: 'USD',
+      }))); //With the math.round function now have that "money format"
 }
 useEffect(()=>{
     getBudget()
