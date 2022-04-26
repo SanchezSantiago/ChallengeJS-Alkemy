@@ -23,6 +23,9 @@ const OperationForm = () => {
     Axios.post('http://localhost:3001/api/operations', operationData);
     message.success('Operation added successfully!');
   };
+  const fail = () =>{
+    message.error("Error! there are fields that are required!")
+  }
 
   const handleDate = (date,dateString) => {
     operationData.date = dateString; //Set the date of the operation
@@ -36,9 +39,10 @@ const OperationForm = () => {
     <h1>New operation</h1>
     <Form
       name="basic"
-      
       initialValues={{ remember: true }}
       autoComplete="off"
+      onFinish={handleSubmit}
+      onFinishFailed={fail}
     >
       <Form.Item
         label="Concept"
@@ -86,7 +90,7 @@ const OperationForm = () => {
 
 
       <Form.Item >
-        <Button type="primary" onClick={handleSubmit} onSubmit={handleSubmit}>
+        <Button type="primary" htmlType='submit'>
           Submit
         </Button>
       </Form.Item>

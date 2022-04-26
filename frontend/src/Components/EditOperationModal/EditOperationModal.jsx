@@ -8,6 +8,7 @@ const EditOperationModal = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [operationData, setOperationData] = useState('');
   const [form] = Form.useForm();
+  const dateFormat = "YYYY/MM/DD";
 
   const showModal = () => {
     setOperationData({ //Set row values in the operationData
@@ -15,40 +16,36 @@ const EditOperationModal = (props) => {
       amount: props.operationInfo.amount,
       date: props.operationInfo.date,
     });
-
     setIsModalVisible(true);
   };
-
+ 
+  const initialValues = {
+    concept: operationData.concept,
+    amount: operationData.amount,
+    date: moment(operationData.date)
+  };
 
   const handleCancel = () => {
     setIsModalVisible(false);
 
   };
 
-  
-
   const handleOperationData = (key) => (event) => { //Set operation data
     setOperationData({ ...operationData, [key]: event.target.value });
   };
   
-
   const handleSubmit = async () =>{ //Put data to the database
       operationData.date = moment(operationData.date).utc().format('YYYY/MM/DD') //if they didn't change the date, this will be put into a format that SQL can accept
        await Axios.put(`http://localhost:3001/api/operations/${props.operationInfo.id}`, operationData);
        message.success('Operation edited successfully!');
        console.log(operationData)
-      handleCancel();
+      handleCancel(); //Close modal
   };
-  const fail = () =>{
-    message.error('Edition failed, there are fields that are required!');
-  }
-  const dateFormat = "YYYY/MM/DD";
 
-const initialValues = {
-  concept: operationData.concept,
-  amount: operationData.amount,
-  date: moment(operationData.date)
-};
+  const fail = () =>{
+    message.error('Error! there are fields that are required!');
+  }
+
 
   const handleDate = (date,dateString) => {
     operationData.date = dateString; //Set the date of the operation
