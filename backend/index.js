@@ -4,6 +4,7 @@ const cors = require('cors');
 const app = express();
 
 const operationsRoutes = require('./routes/operationsRoutes');
+const usersRoutes = require('./routes/usersRoutes');
 
 //Middleware
 app.use(cors());
@@ -11,7 +12,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}))
 
 //Routes
-app.use('/api', operationsRoutes); 
+app.use('/api', operationsRoutes, usersRoutes); 
 
 //Connection
 app.listen(3001, ()=>{

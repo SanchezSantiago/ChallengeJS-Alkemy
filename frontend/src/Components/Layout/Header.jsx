@@ -13,7 +13,7 @@ export const Navbar = () => {
       <div className="logo-container">
         <Link to='/home'><img src="/logo.png" alt="logo" className='logo'/></Link>
       </div>
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" >
               <Link to='/home'>Home</Link>
           </Menu.Item>

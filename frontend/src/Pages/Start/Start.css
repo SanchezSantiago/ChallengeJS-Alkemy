@@ -1,0 +1,23 @@
+body{
+    background-color: rgb(0, 21, 41);
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+
+}
+.welcome{
+    color: white;
+    width: 740px;
+    border: 5px solid white;
+    border-radius: 5px;
+    background-color: rgb(0, 21, 41);
+    padding: 50px;
+}
+.buttons-container{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+}

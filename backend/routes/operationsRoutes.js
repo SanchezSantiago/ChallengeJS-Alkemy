@@ -38,9 +38,7 @@ router.put('/operations/:id', async(req,res) =>{ //Update operation
         date: date.slice(0, 10),//This will put date in the correct format, without UTC
         user_id
     };
-    
-    console.log(newOperation.date)
-    console.log(id);
+
     await pool.query('UPDATE operation SET ? WHERE id = ?', [newOperation, id], (err, result) => {
         res.send(result);
     });

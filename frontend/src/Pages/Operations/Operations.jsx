@@ -1,6 +1,6 @@
 import React from 'react'
 //COMPONENTS
-import OperationForm from '../../Components/Form/OperationForm'
+import OperationForm from '../../Components/OperationForm/OperationForm'
 import IncomeOperationsTable from '../../Components/IncomeOperationsTable/IncomeOperationsTable'
 import ExpenseOperationsTable from '../../Components/ExpenseOperationsTable/ExpenseOperationsTable'
 //STYLE
