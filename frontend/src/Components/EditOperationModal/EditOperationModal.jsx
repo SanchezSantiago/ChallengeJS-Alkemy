@@ -22,7 +22,7 @@ const EditOperationModal = (props) => {
   const initialValues = {
     concept: operationData.concept,
     amount: operationData.amount,
-    date: moment(operationData.date)
+    date: moment(operationData.date) //date: YYYY-MM-DDT03:00:00.000Z
   };
 
   const handleCancel = () => {
@@ -35,7 +35,6 @@ const EditOperationModal = (props) => {
   };
   
   const handleSubmit = async () =>{ //Put data to the database
-      operationData.date = moment(operationData.date).utc().format('YYYY/MM/DD') //if they didn't change the date, this will be put into a format that SQL can accept
        await Axios.put(`http://localhost:3001/api/operations/${props.operationInfo.id}`, operationData);
        message.success('Operation edited successfully!');
        console.log(operationData)

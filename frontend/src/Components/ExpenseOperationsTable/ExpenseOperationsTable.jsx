@@ -51,7 +51,7 @@ const columns = [
     dataIndex: 'date',
     key: 'date',
     render: (value) => {
-      return moment(value).utc().format('YYYY/MM/DD'); //Transform the date format
+      return moment(value).utc().format('MM/DD/YYYY'); //Transform the date format to USA date format
     }
   },
   {
