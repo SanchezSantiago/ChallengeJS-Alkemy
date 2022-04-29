@@ -8,7 +8,7 @@ router.post('/users/register', async(req, res) => {
     const {username, password, email} = req.body;
     const newUser = {
         username,
-        password,
+        password: await bcrypt.hash(password, 10),
         email
     };
     await pool.query('INSERT INTO user set ?', [newUser],(err, result) => {
