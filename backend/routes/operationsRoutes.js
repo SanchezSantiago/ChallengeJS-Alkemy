@@ -64,7 +64,8 @@ router.get('/operations/getOperationByType/:type', async(req, res) => { //Get op
 });
 
 router.get('/operations/getBudget', async(req, res) => { //get the total budget
-    await pool.query('SELECT SUM(amount) as budget FROM operation', (err, result) =>{
+    const user_id = req.user.id;
+    await pool.query('SELECT SUM(amount) as budget FROM operation WHERE user_id = ?',[user_id], (err, result) =>{
         res.send(result)
     });
 })
