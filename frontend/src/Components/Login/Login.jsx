@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 import { Modal, Button } from 'antd';
 
 const Login = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  let navigate = useNavigate();
   const showModal = () => {
     setIsModalVisible(true);
   };
 
   const handleOk = () => {
     setIsModalVisible(false);
+    navigate('/home', {replace: true});
+
   };
 
   const handleCancel = () => {
