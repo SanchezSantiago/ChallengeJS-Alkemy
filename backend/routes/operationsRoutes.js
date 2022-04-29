@@ -24,6 +24,7 @@ router.post('/operations', async(req, res) => { //Insert operations in database
     };
     await pool.query('INSERT INTO operation set ?', [newOperation],(err, result) => {
         res.send(result);
+        console.log(newOperation);
     });
 });
 router.put('/operations/:id', async(req,res) =>{ //Update operation
@@ -52,16 +53,10 @@ router.delete('/operations/:id', async(req, res) =>{ //Delete operation
     })
 })
 
-router.get('/operations/incomes', async(req, res) => { //Get income type operations
-    await pool.query("SELECT * FROM operation WHERE type = 'Income' ORDER BY id DESC", (err, result) => {
+router.get('/operations/getOperationByType/:type', async(req, res) => { //Get income type operations
+    const {type} = req.params;
+    await pool.query("SELECT * FROM operation WHERE type = ? ORDER BY id DESC",[type], (err, result) => {
         res.send(result);
-    });
-});
-
-router.get('/operations/expenses', async(req, res) => { //Get expenses type operations
-    await pool.query("SELECT * FROM operation WHERE type = 'Expense' ORDER BY id DESC", (err, result) => {
-        res.send(result);
-
     });
 });
 

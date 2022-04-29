@@ -11,7 +11,7 @@ const ExpenseOperationsTable = () => {
   const [data, setData] = useState([]);
 
   const getExpenseOperations = async() =>{
-    const resp = await Axios.get('http://localhost:3001/api/operations/expenses');
+    const resp = await Axios.get(`http://localhost:3001/api/operations/getOperationByType/${'Expense'}`);
     setData(resp.data);
   }
   
@@ -42,7 +42,7 @@ const columns = [
     dataIndex: 'amount',
     key: 'amount',
     render:(value)=>{
-      return "$" + value.toLocaleString("es");
+      return ("-$" + (value * -1).toLocaleString("es"));
     },
     responsive: ["sm"]
   },
