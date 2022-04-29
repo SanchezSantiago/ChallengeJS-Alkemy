@@ -29,7 +29,7 @@ const columns = [
     dataIndex: 'amount',
     key: 'amount',
     render:(value)=>{
-      return "$" + value.toLocaleString("es");
+      return (value > 0? "$" + value.toLocaleString("es") : "-$" + (value * -1).toLocaleString("es")); //If the value is negative, displays in negative monetary format
     },
     responsive: ["sm"]
   },

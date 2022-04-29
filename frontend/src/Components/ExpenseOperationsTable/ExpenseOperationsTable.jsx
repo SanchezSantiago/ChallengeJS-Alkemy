@@ -42,7 +42,7 @@ const columns = [
     dataIndex: 'amount',
     key: 'amount',
     render:(value)=>{
-      return ("-$" + (value * -1).toLocaleString("es"));
+      return ("-$" + (value * -1).toLocaleString("es")); //Displays in negative monetary format
     },
     responsive: ["sm"]
   },
