@@ -51,12 +51,7 @@ router.delete('/operations/delete/:id', async(req, res) =>{ //Delete operation
     const user_id = req.user.id;
     const operationId = req.params.id;
     await pool.query('DELETE FROM operation WHERE user_id = ? AND id = ?', [user_id, operationId], (err, result) => {
-        if(err){
-            console.log(err)
-        } else {
-            console.log(result);
-            res.send(result);
-        }
+        res.send(result);
     })
 })
 

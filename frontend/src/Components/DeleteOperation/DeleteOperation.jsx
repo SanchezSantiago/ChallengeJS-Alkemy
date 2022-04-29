@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button} from 'antd';
+import { Modal, Button, message} from 'antd';
 import {BsFillTrashFill} from 'react-icons/bs'
 import useAuth from "../../hooks/useAuth";
 import config from '../../api';
@@ -21,6 +21,7 @@ const DeleteOperation = (props) => {
   const handleSubmit = async (event) => {
   
         await axios.delete(`http://localhost:3001/api/operations/delete/${props.operationInfo.id}`, config(auth.token));
+        message.success('Operation deleted!');
         handleCancel();
     }
   return (
