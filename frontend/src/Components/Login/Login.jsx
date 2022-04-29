@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Modal, Form, Input, Button, message } from 'antd';
+import useAuth from '../../hooks/useAuth';
 const Axios = require('axios');
 
 const Login = () => {
@@ -10,6 +11,7 @@ const Login = () => {
     password: '',
   });
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
   const openModal = () => {
     setIsModalVisible(true);
   };
@@ -22,7 +24,11 @@ const Login = () => {
   };
   const handleSubmit = () =>{ //Post data to the database
     Axios.post('http://localhost:3001/api/users/login', userData).then((response) => {
-      console.log(response.data);
+      const {data} = response;
+      setAuth({username: userData.username, token: data.token});
+      console.log(data.token)
+      console.log(response)
+      navigate('/home', {replace: true});
     }
   );
 

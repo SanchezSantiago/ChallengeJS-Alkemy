@@ -2,11 +2,13 @@ import React, {useState} from 'react'
 
 import './OperationForm.css'
 import { Form, Input, Button, Card, DatePicker, Radio, message } from 'antd';
+import useAuth from "../../hooks/useAuth";
+import config from '../../api';
 
 const Axios = require('axios');
 
 const OperationForm = () => {
-
+  const {auth} = useAuth();
   const [operationData, setOperationData] = useState({
     concept: '',
     amount: '',
@@ -20,7 +22,7 @@ const OperationForm = () => {
 
   const handleSubmit = () =>{ //Post data to the database
     if(operationData.type === 'Expense'){setOperationData(operationData.amount *= -1)} //Set to negative if 'Expense'
-    Axios.post('http://localhost:3001/api/operations', operationData);
+    Axios.post('http://localhost:3001/api/operations', operationData, config(auth.token));
     message.success('Operation added successfully!');
   };
   const fail = () =>{

@@ -5,19 +5,22 @@ import moment from 'moment';
 //COMPONENTS
 import EditOperationModal from '../EditOperationModal/EditOperationModal';
 import DeleteOperation from '../DeleteOperation/DeleteOperation';
+import useAuth from "../../hooks/useAuth";
+import config from '../../api';
 
 const Axios = require('axios');
 const ExpenseOperationsTable = () => {
+  const {auth} = useAuth();
   const [data, setData] = useState([]);
 
   const getExpenseOperations = async() =>{
-    const resp = await Axios.get(`http://localhost:3001/api/operations/getOperationByType/${'Expense'}`);
+    const resp = await Axios.get(`http://localhost:3001/api/operations/getOperationByType/${'Expense'}`,config(auth.token));
     setData(resp.data);
   }
   
   useEffect(()=>{
     getExpenseOperations()
-  },[data]);
+  });
 const columns = [
   { //This column joins two columns, so the table looks good in responsive!
     title: "Concept // Amount", 

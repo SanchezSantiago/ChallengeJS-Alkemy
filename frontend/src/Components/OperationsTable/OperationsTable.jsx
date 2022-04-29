@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {Table} from 'antd';
 import Axios from 'axios';
+import useAuth from "../../hooks/useAuth";
+import config from '../../api';
 import moment from 'moment'; //With this the date looks better
 
 import './OperationsTable.css'
@@ -29,7 +31,7 @@ const columns = [
     dataIndex: 'amount',
     key: 'amount',
     render:(value)=>{
-      return (value > 0? "$" + value.toLocaleString("es") : "-$" + (value * -1).toLocaleString("es")); //If the value is negative, displays in negative monetary format
+      return (value > 0? "+$" + value.toLocaleString("es") : "-$" + (value * -1).toLocaleString("es")); //If the value is negative, displays in negative monetary format
     },
     responsive: ["sm"]
   },
@@ -56,17 +58,17 @@ const columns = [
 
 
 const OperationsTable = () => {
-
+  const {auth} = useAuth();
   const [data, setData] = useState([]);
   const getAllOperations = async() => {
 
-    const resp = await Axios.get('http://localhost:3001/api/operations');
+    const resp = await Axios.get('http://localhost:3001/api/operations', config(auth.token));
     setData(resp.data);
 
   }
   useEffect(()=>{
     getAllOperations()
-  },[data]);
+  });
 
   return(
     <div>

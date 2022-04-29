@@ -2,21 +2,25 @@ import React, {useState, useEffect} from 'react';
 import {Table} from 'antd';
 import moment from 'moment';
 
+
 //COMPONENTS
-import EditOperationModal from '../EditOperationModal/EditOperationModal'
+import EditOperationModal from '../EditOperationModal/EditOperationModal';
 import DeleteOperation from '../DeleteOperation/DeleteOperation';
+import useAuth from "../../hooks/useAuth";
+import config from '../../api';
 
 const Axios = require('axios');
 const IncomeOperationsTable = () => {
+  const {auth} = useAuth();
   const [data, setData] = useState([]);
 
   const getIncomeOperations = async() =>{
-    const resp = await Axios.get(`http://localhost:3001/api/operations/getOperationByType/${'Income'}`);
+    const resp = await Axios.get(`http://localhost:3001/api/operations/getOperationByType/${'Income'}`,config(auth.token));
     setData(resp.data);
   }
     useEffect(()=>{
       getIncomeOperations()
-    },[data]);
+    });
   
 
 const columns = [
@@ -43,7 +47,7 @@ const columns = [
     dataIndex: 'amount',
     key: 'amount',
     render:(value)=>{
-      return "$" + value.toLocaleString("es");
+      return "+$" + value.toLocaleString("es");
     },
     responsive: ["sm"]
   },

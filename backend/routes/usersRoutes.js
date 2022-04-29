@@ -1,26 +1,32 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 //Connection
 const pool = require('../database/database');
-router.post('/users/login', async(req, res) =>{
+router.post('/users/login', async(req, res) =>{ //Login
     const {username, password} = req.body;
     pool.query('SELECT * FROM user WHERE username = ?', [username], async(err, result) => {
+        if(err){
+            res.send({err: err})
+        }
         if(result.length > 0 ){
-        const user = result;
-            if(await bcrypt.compare(password, user[0].password)){
-                console.log(user[0])
-            } else {
-                console.log('password error')
-            }
+            bcrypt.compare(password, result[0].password, (error, response)=> {
+                const id = result[0].id;
+                const token = jwt.sign({id}, "jwtsecret", {
+                    expiresIn: 900,
+                })
+
+                res.json({auth: true, token: token, result: result});
+            }) 
         } else {
-            console.log('user error')
+            res.send("User doesn't exist!");
         }
     })
 
 });
 
-router.post('/users/register', async(req, res) => {
+router.post('/users/register', async(req, res) => { //Register
     const {username, password, email} = req.body;
     const newUser = {
         username,

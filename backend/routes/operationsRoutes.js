@@ -4,14 +4,15 @@ const router = express.Router();
 const pool = require('../database/database');
 
 router.get('/operations', async(req, res) => {//Get all operations
-    await pool.query("SELECT * FROM operation ORDER BY id DESC LIMIT 10", (err, result) => {
+    const userId = req.user.id;
+    await pool.query("SELECT * FROM operation WHERE user_id = ? LIMIT 10",[userId], (err, result) => {
         res.send(result);
     });
 });
 
 router.post('/operations', async(req, res) => { //Insert operations in database
     const {concept, amount, date, type} = req.body;
-    const user_id = 45;
+    const user_id = req.user.id;
     const category = 'test';
     const newOperation = {
         concept,
@@ -27,10 +28,10 @@ router.post('/operations', async(req, res) => { //Insert operations in database
         console.log(newOperation);
     });
 });
-router.put('/operations/:id', async(req,res) =>{ //Update operation
+router.put('/operations/update/:id', async(req,res) =>{ //Update operation
     const {concept, amount, date} = req.body;
     const {id} = req.params;
-    const user_id = 45;
+    const user_id = req.user.id;
     const category = 'test';
     const newOperation = {
         concept,
@@ -46,16 +47,23 @@ router.put('/operations/:id', async(req,res) =>{ //Update operation
 });
 
 
-router.delete('/operations/:id', async(req, res) =>{ //Delete operation
-    const {id} = req.params;
-    await pool.query('DELETE FROM operation WHERE id = ?', [id], (err, result) => {
-        res.send(result)
+router.delete('/operations/delete/:id', async(req, res) =>{ //Delete operation
+    const user_id = req.user.id;
+    const operationId = req.params.id;
+    await pool.query('DELETE FROM operation WHERE user_id = ? AND id = ?', [user_id, operationId], (err, result) => {
+        if(err){
+            console.log(err)
+        } else {
+            console.log(result);
+            res.send(result);
+        }
     })
 })
 
 router.get('/operations/getOperationByType/:type', async(req, res) => { //Get operations by type
+    const user_id = req.user.id
     const {type} = req.params;
-    await pool.query("SELECT * FROM operation WHERE type = ? ORDER BY id DESC",[type], (err, result) => {
+    await pool.query("SELECT * FROM operation WHERE user_id = ? AND type = ? ORDER BY id desc",[user_id, type], (err, result) => {
         res.send(result);
     });
 });

@@ -2,9 +2,12 @@ import React, { useState} from 'react';
 import { Modal, Button, Input, Form, DatePicker, message } from 'antd';
 import {BsFillPencilFill} from 'react-icons/bs';
 import moment from 'moment';
+import useAuth from "../../hooks/useAuth";
+import config from '../../api';
 const Axios = require('axios');
 
 const EditOperationModal = (props) => {
+  const {auth} = useAuth();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [operationData, setOperationData] = useState('');
   const [form] = Form.useForm();
@@ -35,9 +38,8 @@ const EditOperationModal = (props) => {
   };
   
   const handleSubmit = async () =>{ //Put data to the database
-       await Axios.put(`http://localhost:3001/api/operations/${props.operationInfo.id}`, operationData);
+       await Axios.put(`http://localhost:3001/api/operations/update/${props.operationInfo.id}`, operationData, config(auth.token));
        message.success('Operation edited successfully!');
-       console.log(operationData)
       handleCancel(); //Close modal
   };
 

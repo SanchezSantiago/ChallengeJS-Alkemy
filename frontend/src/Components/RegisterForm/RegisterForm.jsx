@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Modal, Form, Input, Button, message } from 'antd';
 const Axios = require('axios');
 
@@ -10,7 +9,6 @@ const RegisterForm = () => {
     password: '',
     email: ''
   });
-  const navigate = useNavigate();
   const openModal = () => {
     setIsModalVisible(true);
   };
@@ -28,7 +26,6 @@ const RegisterForm = () => {
       } else{
         message.success("User created!");
         closeModal();
-        navigate('/home', {replace: true});
       }
     }
   );

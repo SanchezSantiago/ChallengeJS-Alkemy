@@ -11,7 +11,7 @@ import Start from './Pages/Start/Start';
 
 //COMPONENTS
 import Navbar from './Components/Layout/Header';
-
+import RequireAuth from './auth/RequireAuth';
 
 
 function App() {
@@ -19,10 +19,12 @@ function App() {
     <div className='App'>
       <Router>
         <Routes>
-        <Route exact path= '/' element={<Start/>}/>
-          <Route element={<Navbar/>}>
-            <Route path='/home' element={<Home/>}/>
-            <Route path='/operations' element={<Operations/>}/>
+          <Route exact path= '/' element={<Start/>}/>
+          <Route element={<RequireAuth/>}> 
+            <Route element={<Navbar/>}>
+              <Route path='/home' element={<Home/>}/>
+              <Route path='/operations' element={<Operations/>}/>
+            </Route>
           </Route>
         </Routes>  
     </Router>
