@@ -5,7 +5,7 @@ const pool = require('../database/database');
 
 router.get('/operations', async(req, res) => {//Get all operations
     const userId = req.user.id;
-    await pool.query("SELECT * FROM operation WHERE user_id = ? LIMIT 10",[userId], (err, result) => {
+    await pool.query("SELECT * FROM operation WHERE user_id = ? ORDER BY id DESC LIMIT 10",[userId], (err, result) => {
         res.send(result);
     });
 });
@@ -25,7 +25,6 @@ router.post('/operations', async(req, res) => { //Insert operations in database
     };
     await pool.query('INSERT INTO operation set ?', [newOperation],(err, result) => {
         res.send(result);
-        console.log(newOperation);
     });
 });
 router.put('/operations/update/:id', async(req,res) =>{ //Update operation
