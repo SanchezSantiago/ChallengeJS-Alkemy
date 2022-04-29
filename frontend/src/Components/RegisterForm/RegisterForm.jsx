@@ -69,7 +69,7 @@ const RegisterForm = () => {
         <Input
         type="password"
         onChange={handleOperationData('password')}
-         placeholder='8 caracteres minimo' 
+         placeholder='8 characters and 1 uppercase' 
          />
       </Form.Item>
 

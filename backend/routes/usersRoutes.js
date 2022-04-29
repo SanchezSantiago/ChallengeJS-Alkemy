@@ -3,6 +3,22 @@ const bcrypt = require('bcrypt');
 const router = express.Router();
 //Connection
 const pool = require('../database/database');
+router.post('/users/login', async(req, res) =>{
+    const {username, password} = req.body;
+    pool.query('SELECT * FROM user WHERE username = ?', [username], async(err, result) => {
+        if(result.length > 0 ){
+        const user = result;
+            if(await bcrypt.compare(password, user[0].password)){
+                console.log(user[0])
+            } else {
+                console.log('password error')
+            }
+        } else {
+            console.log('user error')
+        }
+    })
+
+});
 
 router.post('/users/register', async(req, res) => {
     const {username, password, email} = req.body;
@@ -21,7 +37,7 @@ router.post('/users/register', async(req, res) => {
             console.log(newUser);
         }
     });
-})
+});
 
 
 
