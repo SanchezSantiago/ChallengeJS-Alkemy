@@ -53,14 +53,14 @@ router.delete('/operations/:id', async(req, res) =>{ //Delete operation
     })
 })
 
-router.get('/operations/getOperationByType/:type', async(req, res) => { //Get income type operations
+router.get('/operations/getOperationByType/:type', async(req, res) => { //Get operations by type
     const {type} = req.params;
     await pool.query("SELECT * FROM operation WHERE type = ? ORDER BY id DESC",[type], (err, result) => {
         res.send(result);
     });
 });
 
-router.get('/operations/getBudget', async(req, res) => {
+router.get('/operations/getBudget', async(req, res) => { //get the total budget
     await pool.query('SELECT SUM(amount) as budget FROM operation', (err, result) =>{
         res.send(result)
     });
