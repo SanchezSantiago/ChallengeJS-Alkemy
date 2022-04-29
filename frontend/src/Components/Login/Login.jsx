@@ -65,8 +65,7 @@ const Login = () => {
         name="password"
         rules={[{ required: true, message: 'Please input a password!' }]}
       >
-        <Input
-        type="password"
+        <Input.Password
         onChange={handleOperationData('password')}
          placeholder='Password' 
          />

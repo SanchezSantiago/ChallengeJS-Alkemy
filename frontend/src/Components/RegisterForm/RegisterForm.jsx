@@ -63,13 +63,34 @@ const RegisterForm = () => {
         name="password"
         rules={[{ required: true, message: 'Please input a password!' }]}
       >
-        <Input
-        type="password"
+        <Input.Password
+        style={{marginLeft: '50px', width: '87%'}}
         onChange={handleOperationData('password')}
-         placeholder='8 characters and 1 uppercase' 
+         placeholder='Password' 
          />
       </Form.Item>
-
+      <Form.Item
+        name="confirm"
+        label="Confirm Password"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+      {
+        required: true,
+        message: 'Please confirm your password!',
+      },
+      ({ getFieldValue }) => ({
+        validator(rule, value) {
+          if (!value || getFieldValue('password') === value) {
+            return Promise.resolve();
+          }
+          return Promise.reject('The two passwords that you entered do not match!');
+        },
+      }),
+    ]}
+  >
+    <Input.Password />
+  </Form.Item>
       <Form.Item
         label="Email"
         name="email"

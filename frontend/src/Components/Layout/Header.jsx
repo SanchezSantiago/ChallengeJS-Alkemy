@@ -20,6 +20,9 @@ export const Navbar = () => {
           <Menu.Item key="2" >
               <Link to='/operations'>Operations</Link>
           </Menu.Item>
+          <Menu.Item key="3">
+              <Link to='/'>Logout</Link>
+          </Menu.Item>
       </Menu>
     </Header>
     <Content style={{ padding: '50px 50px' }}>
