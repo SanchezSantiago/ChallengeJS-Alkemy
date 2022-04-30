@@ -22,13 +22,16 @@ const Login = () => {
   const handleOperationData = (key) => (event) => { //Set operation data
     setUserData({ ...userData, [key]: event.target.value });
   };
-  const handleSubmit = () =>{ //Post data to the database
-    Axios.post('http://localhost:3001/api/users/login', userData).then((response) => {
+  const handleSubmit = async() =>{ //Post data to the database
+    await Axios.post('http://localhost:3001/api/users/login', userData).then((response) => {
       const {data} = response;
       setAuth({username: userData.username, token: data.token});
-      console.log(data.token)
-      console.log(response)
+      if(response.status === 209){
+        message.error(data);
+      } else {
+        message.success(data.message);
       navigate('/home', {replace: true});
+    }
     }
   );
 

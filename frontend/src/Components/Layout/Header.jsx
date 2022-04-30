@@ -1,15 +1,19 @@
 import React from 'react'
+//COMPONENTS
+import useAuth from "../../hooks/useAuth";
 import './Header.css'
 //ANTD
-import { Layout, Menu} from 'antd';
-import {Link, Outlet, } from 'react-router-dom'
+import { Button, Layout, Menu} from 'antd';
+import {Link, Outlet } from 'react-router-dom'
 import 'antd/dist/antd.css';
 const { Header, Content, Footer } = Layout;
+
 //COMPONENT 'Header'
 export const Navbar = () => {
+  const { auth } = useAuth();
   return (
     <Layout className="layout">
-    <Header>
+    <Header style={{ position: 'fixed', zIndex: 1, width: '100%'}}>
       <div className="logo-container">
         <Link to='/home'><img src="/logo.png" alt="logo" className='logo'/></Link>
       </div>
@@ -20,17 +24,19 @@ export const Navbar = () => {
           <Menu.Item key="2" >
               <Link to='/operations'>Operations</Link>
           </Menu.Item>
-          <Menu.Item key="3">
-              <Link to='/'>Logout</Link>
-          </Menu.Item>
       </Menu>
+
     </Header>
     <Content style={{ padding: '50px 50px' }}>
       <div className="site-layout-content">
         <Outlet/>
       </div>
     </Content>
-    <Footer style={{ textAlign: 'center' }}>Santiago Sanchez Nieva</Footer>
+    <Footer style={{ textAlign: 'center' }}>
+      {auth.username}
+      <br/>
+      <Button><Link to='/'>Logout</Link></Button>
+      </Footer>
   </Layout>
   )
 }

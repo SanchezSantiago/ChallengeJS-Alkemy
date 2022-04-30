@@ -9,6 +9,7 @@ const RegisterForm = () => {
     password: '',
     email: ''
   });
+  
   const openModal = () => {
     setIsModalVisible(true);
   };
@@ -16,9 +17,11 @@ const RegisterForm = () => {
   const closeModal = () => {
     setIsModalVisible(false);
   };
+
   const handleOperationData = (key) => (event) => { //Set operation data
     setUserData({ ...userData, [key]: event.target.value });
   };
+
   const handleSubmit = () =>{ //Post data to the database
     Axios.post('http://localhost:3001/api/users/register', userData).then((response) => {
       if(response.status === 209){
@@ -34,6 +37,7 @@ const RegisterForm = () => {
   const fail = () =>{
     message.error("Error! there are fields that are required!")
   }; 
+
   return (
     <>
       <Button type="primary" onClick={openModal} style={{width: '150px', height: '50px'}}>
