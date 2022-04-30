@@ -29,11 +29,11 @@ const DeleteOperation = (props) => {
       <Button onClick={showModal}>
           <BsFillTrashFill />
       </Button>
-      <Modal title="Delete" visible={isModalVisible} onCancel={handleCancel} footer={null}>
+      <Modal title="Delete operation" width='300px'  visible={isModalVisible} onCancel={handleCancel} footer={null}>
           <div>
-              <h1>Delete operation</h1>
-              <Button type="primary" onClick={handleSubmit}>Confirm</Button>
-              <Button onClick={handleCancel} >Close</Button>
+              <h1>¿Delete operation?</h1>
+              <Button type="primary" onClick={handleSubmit} style={{marginLeft: '50px'}}>Confirm</Button>
+              <Button onClick={handleCancel} style={{marginLeft: '5px'}} >Close</Button>
           </div>
       </Modal>
   </>
