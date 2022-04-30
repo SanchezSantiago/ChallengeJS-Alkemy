@@ -82,6 +82,7 @@ const OperationForm = () => {
       <Form.Item
         label="Date"
         name="date"
+        style={{marginRight: '50px'}}
         rules={[{ required: true, message: 'Please input the date!' }]}
       >
         <DatePicker 
