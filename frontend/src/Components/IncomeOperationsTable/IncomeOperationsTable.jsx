@@ -24,23 +24,10 @@ const IncomeOperationsTable = () => {
   
 
 const columns = [
-  { //This column joins two columns, so the table looks good in responsive!
-    title: "Concept // Amount", 
-    render: (record) => (
-      <React.Fragment>
-        {record.concept}
-        <hr />
-        ${record.amount}
-      </React.Fragment>
-    ),
-    responsive: ["xs"]
-  },
   {
     title: 'Concept',
     dataIndex: 'concept',
     key: 'concept',
-    responsive: ["sm"]
-  
   },
   {
     title: 'Amount',
@@ -49,7 +36,6 @@ const columns = [
     render:(value)=>{
       return "+$" + value.toLocaleString("es");
     },
-    responsive: ["sm"]
   },
   {
     title: 'Date',
@@ -58,11 +44,6 @@ const columns = [
     render: (value) => {
       return moment(value).utc().format('MM/DD/YYYY'); //Transform the date format
     }
-  },
-  {
-    title: 'Category',
-    dataIndex: 'category',
-    key: 'category'
   },
   {
     title: 'Type',

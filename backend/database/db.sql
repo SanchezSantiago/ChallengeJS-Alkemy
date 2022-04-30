@@ -18,7 +18,6 @@ CREATE TABLE `personalbudget`.`operation` (
   `concept` VARCHAR(45) NOT NULL,
   `amount` DECIMAL(15,2) NOT NULL,
   `type` VARCHAR(45) NOT NULL,
-  `category` VARCHAR(45) NOT NULL,
   `date` DATE NOT NULL DEFAULT '0000-00-00' ,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -29,5 +28,5 @@ CREATE TABLE `personalbudget`.`operation` (
     REFERENCES `personalbudget`.`user` (`id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-    );
+);
 

@@ -13,12 +13,10 @@ router.get('/operations/getoperations', async(req, res) => {//Get all operations
 router.post('/operations/postoperation', async(req, res) => { //Insert operations in database
     const {concept, amount, date, type} = req.body;
     const user_id = req.user.id;
-    const category = 'test';
     const newOperation = {
         concept,
         amount,
         type,
-        category,
         date,
         user_id
 
@@ -31,11 +29,9 @@ router.put('/operations/update/:id', async(req,res) =>{ //Update operation
     const {concept, amount, date} = req.body;
     const {id} = req.params;
     const user_id = req.user.id;
-    const category = 'test';
     const newOperation = {
         concept,
         amount,
-        category,
         date: date.slice(0, 10),//This will put date in the correct format, without UTC
         user_id
     };

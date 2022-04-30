@@ -8,23 +8,10 @@ import moment from 'moment'; //With this the date looks better
 import './OperationsTable.css'
 
 const columns = [
-  { //This column joins two columns, so the table looks good in responsive!
-    title: "Concept // Amount", 
-    render: (record) => (
-      <React.Fragment>
-        {record.concept}
-        <hr />
-        ${record.amount}
-      </React.Fragment>
-    ),
-    responsive: ["xs"]
-  },
   {
     title: 'Concept',
     dataIndex: 'concept',
     key: 'concept',
-    responsive: ["sm"]
-  
   },
   {
     title: 'Amount',
@@ -33,7 +20,6 @@ const columns = [
     render:(value)=>{
       return (value > 0? "+$" + value.toLocaleString("es") : "-$" + (value * -1).toLocaleString("es")); //If the value is negative, displays in negative monetary format
     },
-    responsive: ["sm"]
   },
   {
     title: 'Date',
@@ -42,11 +28,6 @@ const columns = [
     render: (value) => {
       return moment(value).utc().format('YYYY/MM/DD'); //Transform the date format
     }
-  },
-  {
-    title: 'Category',
-    dataIndex: 'category',
-    key: 'category'
   },
   {
     title: 'Type',
