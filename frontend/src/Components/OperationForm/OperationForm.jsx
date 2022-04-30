@@ -94,7 +94,7 @@ const OperationForm = () => {
 
       <Form.Item >
         <Button type="primary" htmlType='submit'>
-          Submit
+          Add operation
         </Button>
       </Form.Item>
     </Form>
