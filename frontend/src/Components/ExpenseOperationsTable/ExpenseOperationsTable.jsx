@@ -14,7 +14,7 @@ const ExpenseOperationsTable = () => {
   const [data, setData] = useState([]);
 
   const getExpenseOperations = async() =>{
-    const resp = await Axios.get(`http://localhost:3001/api/operations/getOperationByType/${'Expense'}`,config(auth.token));
+    const resp = await Axios.get(`http://localhost:3001/api/operations/getoperationbytype/${'Expense'}`,config(auth.token));
     setData(resp.data);
   }
   

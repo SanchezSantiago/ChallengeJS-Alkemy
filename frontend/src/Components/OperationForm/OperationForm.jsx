@@ -22,7 +22,7 @@ const OperationForm = () => {
 
   const handleSubmit = () =>{ //Post data to the database
     if(operationData.type === 'Expense'){setOperationData(operationData.amount *= -1)} //Set to negative if 'Expense'
-    Axios.post('http://localhost:3001/api/operations', operationData, config(auth.token));
+    Axios.post('http://localhost:3001/api/operations/postoperation', operationData, config(auth.token));
     message.success('Operation added successfully!');
   };
   const fail = () =>{

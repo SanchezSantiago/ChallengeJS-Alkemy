@@ -3,14 +3,14 @@ const router = express.Router();
 //Connection
 const pool = require('../database/database');
 
-router.get('/operations', async(req, res) => {//Get all operations
+router.get('/operations/getoperations', async(req, res) => {//Get all operations
     const userId = req.user.id;
     await pool.query("SELECT * FROM operation WHERE user_id = ? ORDER BY id DESC LIMIT 10",[userId], (err, result) => {
         res.send(result);
     });
 });
 
-router.post('/operations', async(req, res) => { //Insert operations in database
+router.post('/operations/postoperation', async(req, res) => { //Insert operations in database
     const {concept, amount, date, type} = req.body;
     const user_id = req.user.id;
     const category = 'test';
@@ -54,7 +54,7 @@ router.delete('/operations/delete/:id', async(req, res) =>{ //Delete operation
     })
 })
 
-router.get('/operations/getOperationByType/:type', async(req, res) => { //Get operations by type
+router.get('/operations/getoperationbytype/:type', async(req, res) => { //Get operations by type
     const user_id = req.user.id
     const {type} = req.params;
     await pool.query("SELECT * FROM operation WHERE user_id = ? AND type = ? ORDER BY id desc",[user_id, type], (err, result) => {
@@ -62,7 +62,7 @@ router.get('/operations/getOperationByType/:type', async(req, res) => { //Get op
     });
 });
 
-router.get('/operations/getBudget', async(req, res) => { //get the total budget
+router.get('/operations/getbudget', async(req, res) => { //get the total budget
     const user_id = req.user.id;
     await pool.query('SELECT SUM(amount) as budget FROM operation WHERE user_id = ?',[user_id], (err, result) =>{
         res.send(result)

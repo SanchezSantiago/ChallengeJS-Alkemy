@@ -62,7 +62,7 @@ const OperationsTable = () => {
   const [data, setData] = useState([]);
   const getAllOperations = async() => {
 
-    const resp = await Axios.get('http://localhost:3001/api/operations', config(auth.token));
+    const resp = await Axios.get('http://localhost:3001/api/operations/getoperations', config(auth.token));
     setData(resp.data);
 
   }

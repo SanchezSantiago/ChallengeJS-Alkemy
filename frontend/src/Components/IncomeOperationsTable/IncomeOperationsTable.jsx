@@ -15,7 +15,7 @@ const IncomeOperationsTable = () => {
   const [data, setData] = useState([]);
 
   const getIncomeOperations = async() =>{
-    const resp = await Axios.get(`http://localhost:3001/api/operations/getOperationByType/${'Income'}`,config(auth.token));
+    const resp = await Axios.get(`http://localhost:3001/api/operations/getoperationbytype/${'Income'}`,config(auth.token));
     setData(resp.data);
   }
     useEffect(()=>{

@@ -15,7 +15,7 @@ const BalanceCard = () => {
     const [budget, setBudget] = useState([]);
 
     const getBudget = async() =>{
-        const resp = await Axios.get('http://localhost:3001/api/operations/getBudget', config(auth.token));
+        const resp = await Axios.get('http://localhost:3001/api/operations/getbudget', config(auth.token));
         setBudget((Math.round(resp.data[0].budget * 100) / 100).toLocaleString(('en-US', {
             style: 'currency',
             currency: 'USD',
