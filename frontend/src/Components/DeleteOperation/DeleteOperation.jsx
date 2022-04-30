@@ -32,8 +32,8 @@ const DeleteOperation = (props) => {
       <Modal title="Delete operation" width='300px'  visible={isModalVisible} onCancel={handleCancel} footer={null}>
           <div>
               <h1>¿Delete operation?</h1>
-              <Button type="primary" onClick={handleSubmit} style={{marginLeft: '50px'}}>Confirm</Button>
-              <Button onClick={handleCancel} style={{marginLeft: '5px'}} >Close</Button>
+              <Button onClick={handleCancel} style={{marginLeft: '50px'}}>Close</Button>
+              <Button type="danger" onClick={handleSubmit} style={{marginLeft: '5px'}}>Delete</Button>
           </div>
       </Modal>
   </>
