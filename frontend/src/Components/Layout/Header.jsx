@@ -3,9 +3,10 @@ import React from 'react'
 import useAuth from "../../hooks/useAuth";
 import './Header.css'
 //ANTD
-import { Button, Layout, Menu} from 'antd';
+import {Layout, Menu} from 'antd';
 import {Link, Outlet } from 'react-router-dom'
 import 'antd/dist/antd.css';
+import LogoutModal from '../LogoutModal/LogoutModal';
 const { Header, Content, Footer } = Layout;
 
 //COMPONENT 'Header'
@@ -35,7 +36,7 @@ export const Navbar = () => {
     <Footer style={{ textAlign: 'center' }}>
       {auth.username}
       <br/>
-      <Button><Link to='/'>Logout</Link></Button>
+      <LogoutModal/>
       </Footer>
   </Layout>
   )
