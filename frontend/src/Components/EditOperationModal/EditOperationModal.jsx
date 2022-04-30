@@ -57,7 +57,7 @@ const EditOperationModal = (props) => {
       <Button onClick={showModal}>
         <BsFillPencilFill/>
       </Button>
-      <Modal title="Edit" visible={isModalVisible} onCancel={handleCancel} footer={null}>
+      <Modal title="Edit operation" visible={isModalVisible} onCancel={handleCancel} footer={null}>
       <Form
       form={form}
       name="basic"
@@ -95,17 +95,19 @@ const EditOperationModal = (props) => {
       <Form.Item
         label="Date"
         name="date"
+        style={{marginLeft: '120px'}}
         rules={[{ required: true, message: 'Please input the date!' }]}
       >
         <DatePicker 
         format={dateFormat} 
         onChange={handleDate}
+        
         size='large'
         />
       </Form.Item>
       <Form.Item >
-        <Button type="primary" htmlType='submit'>
-          Submit
+        <Button type="primary" htmlType='submit'size='large' style={{width: '100%'}}>
+          Edit Operation
         </Button>
       </Form.Item>
     </Form>
