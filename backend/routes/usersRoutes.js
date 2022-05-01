@@ -6,10 +6,11 @@ const jwt = require('jsonwebtoken');
 const pool = require('../database/database');
 router.post('/users/login', async (req, res) => { //Login
     const {
+        email,
         username,
         password
     } = req.body;
-    pool.query('SELECT * FROM user WHERE username = ?', [username], async (err, result) => {
+    pool.query('SELECT * FROM user WHERE email = ? AND username = ?', [email, username], async (err, result) => {
         if (err) {
             res.send({
                 err: err
@@ -25,11 +26,11 @@ router.post('/users/login', async (req, res) => { //Login
                     res.json({
                         auth: true,
                         token: token,
-                        message: `Welcome, ${username}!`
+                        message: `Welcome, ${result[0].username}!`
                     });
                 } else {
                     res.status(209)
-                    res.send("Wrong username/password combination!")
+                    res.send("Wrong email/password combination!")
                 }
             })
         } else {

@@ -8,6 +8,7 @@ const Login = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [userData, setUserData] = useState({
     username: '',
+    email: '',
     password: '',
   });
   const navigate = useNavigate();
@@ -53,6 +54,17 @@ const Login = () => {
       onFinishFailed={fail}
     >
       <Form.Item
+        label="Email"
+        name="email"
+        rules={[{ required: true, message: 'Please input a email!' }]}
+      >
+        <Input
+        type='email'
+        onChange={handleOperationData('email')}
+         placeholder='Email'/>
+      </Form.Item>
+
+      <Form.Item
         label="Username"
         name="username"
         rules={[{ required: true, message: 'Please input a username!' }]}
@@ -60,8 +72,9 @@ const Login = () => {
         <Input
         type='text'
         onChange={handleOperationData('username')}
-         placeholder='Username'/>
+        placeholder='Username'/>
       </Form.Item>
+
 
       <Form.Item
         label="Password"
