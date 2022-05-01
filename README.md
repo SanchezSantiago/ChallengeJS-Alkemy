@@ -40,7 +40,7 @@ Complying with the instructions, the challenge is finished, but additionally:
   For example, a category “food” to categorize expenses. Additionally, add the
   possibility of listing operations by category.
  
-  Status: Developing 👨‍💻
+  Status: Done✅
   
   # How to put it to work?
   1. Download the repository.
