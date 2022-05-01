@@ -19,8 +19,9 @@ const IncomeOperationsTable = () => {
     setData(resp.data);
   }
     useEffect(()=>{
-      getIncomeOperations()
-    });
+      getIncomeOperations(); //The comment above disable a eslint warning
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [data]);
   
 
 const columns = [

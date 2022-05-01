@@ -48,8 +48,9 @@ const OperationsTable = () => {
 
   }
   useEffect(()=>{
-    getAllOperations()
-  });
+    getAllOperations(); //The comment above disable a eslint warning
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return(
     <div>
