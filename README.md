@@ -42,7 +42,7 @@ Complying with the instructions, the challenge is finished, but additionally:
  
   Status: Developing 👨‍💻
   
-##How to put it to work?
+  # How to put it to work?
   1. Download the repository.
   2. Do "npm install" on the frontend and backend folders.
   3. In 'Backend' create a dotenv file (Ex: '.env') 
