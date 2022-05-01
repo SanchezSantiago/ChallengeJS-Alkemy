@@ -63,6 +63,45 @@ const columns = [
     title: 'Category',
     dataIndex: 'category',
     key: 'category',
+    filters: [ //Filters are declared in this field.
+      {
+        text: 'Shopping',
+        value: 'Shopping',
+      },
+      {
+        text: 'Entertainment',
+        value: 'Entertainment',
+      },
+      {
+        text: 'Restaurants and bars',
+        value: 'Restaurants and bars',
+      },
+      {
+        text: 'Health and sports',
+        value: 'Health and sports',
+      },
+      {
+        text: 'Services',
+        value: 'Services',
+      },
+      {
+        text: 'Supermarket',
+        value: 'Supermarket',
+      },
+      {
+        text: 'Transports',
+        value: 'Transports',
+      },
+      {
+        text: 'Vacations',
+        value: 'Vacations',
+      },
+      {
+        text: 'none',
+        value: 'none',
+      },
+    ],
+    onFilter: (value, record) => record.category.indexOf(value) === 0
   },
   {
     title: 'Type',
