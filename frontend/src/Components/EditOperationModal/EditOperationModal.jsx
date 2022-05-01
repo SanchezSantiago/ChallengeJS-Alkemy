@@ -1,6 +1,6 @@
 import React, { useState} from 'react';
 //ANTD
-import { Modal, Button, Input, Form, DatePicker, message } from 'antd';
+import { Modal, Button, Input, Form, DatePicker, message, Select } from 'antd';
 //COMPONENTS
 import useAuth from "../../hooks/useAuth";
 import config from '../../api';
@@ -14,6 +14,7 @@ const EditOperationModal = (props) => {
   const {auth} = useAuth();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [operationData, setOperationData] = useState('');
+  const { Option } = Select;
   const [form] = Form.useForm();
   const dateFormat = "YYYY/MM/DD";
 
@@ -22,13 +23,16 @@ const EditOperationModal = (props) => {
       concept: props.operationInfo.concept,
       amount: props.operationInfo.amount,
       date: props.operationInfo.date,
+      category: props.operationInfo.category
     });
+    console.log(operationData)
     setIsModalVisible(true);
   };
  
   const initialValues = {
     concept: operationData.concept,
     amount: operationData.amount,
+    category: operationData.category,
     date: moment(operationData.date) //date: YYYY-MM-DDT03:00:00.000Z
   };
 
@@ -55,6 +59,11 @@ const EditOperationModal = (props) => {
   const handleDate = (date,dateString) => {
     operationData.date = dateString; //Set the date of the operation
   };
+
+  const handleSelectData = (value) => {
+    operationData.category = value;//Set the category of the operation
+  }
+
 
   return (
     <>
@@ -94,6 +103,22 @@ const EditOperationModal = (props) => {
         onChange={handleOperationData('amount')}
          placeholder={operationData.amount} 
          />
+      </Form.Item>
+
+      <Form.Item
+        label="Category"
+      >
+        <Select name="category" defaultValue ={initialValues.category} style={{ width: '100%' }} onChange={(value) => {handleSelectData(value)}} >
+          <Option value="none">None</Option>
+          <Option value="Shopping">Shopping</Option>
+          <Option value="Entertainment">Entertainment</Option>
+          <Option value="Restaurants and bars">Restaurants and bars</Option>
+          <Option value="Health and sports">Health and sports</Option>
+          <Option value="Services">Services</Option>
+          <Option value="Supermarket">Supermarket</Option>
+          <Option value="Transports">Transports</Option>
+          <Option value="Vacations">Vacations</Option>
+        </Select>
       </Form.Item>
 
       <Form.Item

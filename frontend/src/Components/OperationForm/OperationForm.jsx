@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import './OperationForm.css'
 //ANTD
-import { Form, Input, Button, Card, DatePicker, Radio, message } from 'antd';
+import { Form, Input, Button, Card, DatePicker, Radio, message, Select } from 'antd';
 //COMPONENTS
 import useAuth from "../../hooks/useAuth";
 import config from '../../api';
@@ -10,10 +10,12 @@ const Axios = require('axios');
 
 const OperationForm = () => {
   const {auth} = useAuth();
+  const { Option } = Select;
   const [operationData, setOperationData] = useState({
     concept: '',
     amount: '',
     date: '',
+    category:'none',
     type: ''
   });
 
@@ -32,6 +34,9 @@ const OperationForm = () => {
   const handleDate = (date,dateString) => {
     operationData.date = dateString; //Set the date of the operation
   };
+  const handleSelectData = (value) => {
+    operationData.category = value;//Set the category of the operation
+  }
 
 
 
@@ -78,7 +83,21 @@ const OperationForm = () => {
          placeholder='Use dot. Ex: $1000.54' 
          />
       </Form.Item>
-
+      <Form.Item
+        label="Category"
+      >
+        <Select name="category" defaultValue ='none' style={{ width: '100%' }} onChange={(value) => {handleSelectData(value)}} >
+          <Option value="none">None</Option>
+          <Option value="Shopping">Shopping</Option>
+          <Option value="Entertainment">Entertainment</Option>
+          <Option value="Restaurants and bars">Restaurants and bars</Option>
+          <Option value="Health and sports">Health and sports</Option>
+          <Option value="Services">Services</Option>
+          <Option value="Supermarket">Supermarket</Option>
+          <Option value="Transports">Transports</Option>
+          <Option value="Vacations">Vacations</Option>
+        </Select>
+      </Form.Item>
       <Form.Item
         label="Date"
         name="date"

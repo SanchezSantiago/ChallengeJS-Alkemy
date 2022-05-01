@@ -19,6 +19,7 @@ CREATE TABLE `personalbudget`.`operation` (
   `amount` DECIMAL(15,2) NOT NULL,
   `type` VARCHAR(45) NOT NULL,
   `date` DATE NOT NULL DEFAULT '0000-00-00' ,
+  `category` VARCHAR(45) NOT NULL DEFAULT 'none',
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,

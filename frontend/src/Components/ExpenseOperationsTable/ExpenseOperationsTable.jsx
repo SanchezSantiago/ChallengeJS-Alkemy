@@ -25,10 +25,22 @@ const ExpenseOperationsTable = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 const columns = [
+  { //This column joins two columns
+    title: "Concept // Amount", 
+    render: (record) => (
+      <React.Fragment>
+        {record.concept}
+        <hr />
+        ${record.amount}
+      </React.Fragment>
+    ),
+    responsive: ["xs"]
+  },
   {
     title: 'Concept',
     dataIndex: 'concept',
     key: 'concept',
+    responsive: ["sm"]
   },
   {
     title: 'Amount',
@@ -37,6 +49,7 @@ const columns = [
     render:(value)=>{
       return ("-$" + (value * -1).toLocaleString("es")); //Displays in negative monetary format
     },
+    responsive: ["sm"]
   },
   {
     title: 'Date',
@@ -45,6 +58,11 @@ const columns = [
     render: (value) => {
       return moment(value).utc().format('MM/DD/YYYY'); //Transform the date format to USA date format
     }
+  },
+  {
+    title: 'Category',
+    dataIndex: 'category',
+    key: 'category',
   },
   {
     title: 'Type',

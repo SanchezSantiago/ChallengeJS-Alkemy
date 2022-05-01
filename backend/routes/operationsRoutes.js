@@ -11,31 +11,34 @@ router.get('/operations/getoperations', async(req, res) => {//Get all operations
 });
 
 router.post('/operations/postoperation', async(req, res) => { //Insert operations in database
-    const {concept, amount, date, type} = req.body;
+    const {concept, amount, date, type, category} = req.body;
     const user_id = req.user.id;
     const newOperation = {
         concept,
         amount,
         type,
+        category,
         date,
         user_id
 
     };
     if(newOperation.type === 'Expense'){
-        newOperation.amount *= -1
+        newOperation.amount *= -1 //Convert to negative
     }
+    console.log(newOperation);
     await pool.query('INSERT INTO operation set ?', [newOperation],(err, result) => {
         res.send(result);
     });
 });
 router.put('/operations/update/:id', async(req,res) =>{ //Update operation
-    const {concept, amount, date} = req.body;
+    const {concept, amount, date, category} = req.body;
     const {id} = req.params;
     const user_id = req.user.id;
     const newOperation = {
         concept,
         amount,
         date: date.slice(0, 10),//This will put date in the correct format, without UTC
+        category,
         user_id
     };
 

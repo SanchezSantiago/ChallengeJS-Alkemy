@@ -33,6 +33,11 @@ const columns = [
     }
   },
   {
+    title: 'Category',
+    dataIndex: 'category',
+    key: 'category',
+  },
+  {
     title: 'Type',
     dataIndex: 'type',
     key: 'type'
