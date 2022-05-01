@@ -21,6 +21,9 @@ router.post('/operations/postoperation', async(req, res) => { //Insert operation
         user_id
 
     };
+    if(newOperation.type === 'Expense'){
+        newOperation.amount *= -1
+    }
     await pool.query('INSERT INTO operation set ?', [newOperation],(err, result) => {
         res.send(result);
     });
