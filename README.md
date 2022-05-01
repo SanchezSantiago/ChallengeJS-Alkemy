@@ -45,12 +45,13 @@ Complying with the instructions, the challenge is finished, but additionally:
   # How to put it to work?
   1. Download the repository.
   2. Do "npm install" on the frontend and backend folders.
-  3. In 'Backend' create a dotenv file (Ex: '.env') 
+  3. copy what is in "db.sql" and paste it (by right clicking) into the mysql shell.
+  4. In 'Backend' create a dotenv file (Ex: '.env') 
   ### containing the following inside:
     ○ PORT = 3001  
     ○ SQLPASS = [your SQL password] 
     ○ SECRET = [What you want Ex: 'secret']
-  4. Then just run the "npm start" command on both directories.
-  5. Have fun.
+  5. Then just run the "npm start" command on both directories.
+  6. Have fun.
   
 ## So... that's, let's code!
