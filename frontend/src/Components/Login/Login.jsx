@@ -7,7 +7,6 @@ const Axios = require('axios');
 const Login = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [userData, setUserData] = useState({
-    username: '',
     email: '',
     password: '',
   });
@@ -26,7 +25,7 @@ const Login = () => {
   const handleSubmit = async() =>{ //Post data to the database
     await Axios.post('http://localhost:3001/api/users/login', userData).then((response) => {
       const {data} = response;
-      setAuth({username: userData.username, token: data.token});
+      setAuth({email: userData.email, token: data.token});
       if(response.status === 209){
         message.error(data);
       } else {
@@ -65,18 +64,6 @@ const Login = () => {
       </Form.Item>
 
       <Form.Item
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: 'Please input a username!' }]}
-      >
-        <Input
-        type='text'
-        onChange={handleOperationData('username')}
-        placeholder='Username'/>
-      </Form.Item>
-
-
-      <Form.Item
         label="Password"
         name="password"
         rules={[{ required: true, message: 'Please input a password!' }]}
@@ -89,7 +76,7 @@ const Login = () => {
 
       <Form.Item >
         <Button type="primary" htmlType='submit' size='large' style={{width: '100%'}}>
-          Submit
+          Login
         </Button>
       </Form.Item>
     </Form>

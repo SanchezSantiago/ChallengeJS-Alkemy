@@ -34,7 +34,7 @@ export const Navbar = () => {
       </div>
     </Content>
     <Footer style={{ textAlign: 'center' }}>
-      {auth.username}
+      {auth.email}
       <br/>
       <LogoutModal/>
       </Footer>

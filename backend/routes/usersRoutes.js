@@ -7,10 +7,9 @@ const pool = require('../database/database');
 router.post('/users/login', async (req, res) => { //Login
     const {
         email,
-        username,
         password
     } = req.body;
-    pool.query('SELECT * FROM user WHERE email = ? AND username = ?', [email, username], async (err, result) => {
+    pool.query('SELECT * FROM user WHERE email = ?', [email], async (err, result) => {
         if (err) {
             res.send({
                 err: err
