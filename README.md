@@ -33,7 +33,7 @@ Complying with the instructions, the challenge is finished, but additionally:
   both for listing and creating new records. The essential data to allow
   the entry must be an email and password, being able to add the ones you want.
   
-  Status: Developing 👨‍💻
+  Status: Done✅
   
 ## Operation Categories📑
   Add the functionality to categorize the operations registered in the manager, such as
