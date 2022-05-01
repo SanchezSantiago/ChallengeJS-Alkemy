@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <>
       <Button type="primary" onClick={openModal} style={{width: '150px', height: '50px'}}>
-        SignUp
+        Login
       </Button>
       <Modal title="Register" visible={isModalVisible} onCancel={closeModal} footer={null}>
       <Form
@@ -76,7 +76,7 @@ const Login = () => {
 
       <Form.Item >
         <Button type="primary" htmlType='submit' size='large' style={{width: '100%'}}>
-          Login
+          Login!
         </Button>
       </Form.Item>
     </Form>

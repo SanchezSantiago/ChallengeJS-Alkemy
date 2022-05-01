@@ -41,7 +41,7 @@ const RegisterForm = () => {
   return (
     <>
       <Button type="primary" onClick={openModal} style={{width: '150px', height: '50px'}}>
-        SignIn
+        Register
       </Button>
       <Modal title="Register" visible={isModalVisible} onCancel={closeModal} footer={null}>
       <Form
@@ -109,7 +109,7 @@ const RegisterForm = () => {
 
       <Form.Item >
         <Button type="primary" htmlType='submit' size='large' style={{width: '100%'}}>
-          Submit
+          Register!
         </Button>
       </Form.Item>
     </Form>
