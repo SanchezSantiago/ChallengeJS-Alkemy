@@ -2,14 +2,16 @@ import React from 'react'
 //COMPONENTS
 import useAuth from "../../hooks/useAuth";
 import './Header.css'
+//COMPONENTS
+import LogoutModal from '../LogoutModal/LogoutModal';
 //ANTD
 import {Layout, Menu} from 'antd';
 import {Link, Outlet } from 'react-router-dom'
 import 'antd/dist/antd.css';
-import LogoutModal from '../LogoutModal/LogoutModal';
 const { Header, Content, Footer } = Layout;
 
-//COMPONENT 'Header'
+
+
 export const Navbar = () => {
   const { auth } = useAuth();
   return (

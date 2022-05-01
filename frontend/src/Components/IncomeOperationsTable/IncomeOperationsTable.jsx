@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
+//ANTD
 import {Table} from 'antd';
-import moment from 'moment';
-
-
 //COMPONENTS
 import EditOperationModal from '../EditOperationModal/EditOperationModal';
 import DeleteOperation from '../DeleteOperation/DeleteOperation';
 import useAuth from "../../hooks/useAuth";
 import config from '../../api';
+//MISC
+import moment from 'moment';
 
 const Axios = require('axios');
 const IncomeOperationsTable = () => {
@@ -19,7 +19,7 @@ const IncomeOperationsTable = () => {
     setData(resp.data);
   }
     useEffect(()=>{
-      getIncomeOperations(); //The comment above disable a eslint warning
+      getIncomeOperations(); //The comment below disable a eslint warning
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
   

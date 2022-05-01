@@ -1,5 +1,6 @@
 import React from 'react'
 import './Start.css'
+//COMPONENTS
 import Login from '../../Components/Login/Login';
 import RegisterForm from '../../Components/RegisterForm/RegisterForm'
 

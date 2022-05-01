@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import {Table} from 'antd';
-import Axios from 'axios';
+import './OperationsTable.css'
+//COMPONENTS
 import useAuth from "../../hooks/useAuth";
 import config from '../../api';
-import moment from 'moment'; //With this the date looks better
+//MISC
+import moment from 'moment'; //date format
 
-import './OperationsTable.css'
 
+const Axios = require('axios');
+const OperationsTable = () => {
 const columns = [
   {
     title: 'Concept',
@@ -38,7 +41,6 @@ const columns = [
 ];
 
 
-const OperationsTable = () => {
   const {auth} = useAuth();
   const [data, setData] = useState([]);
   const getAllOperations = async() => {
@@ -48,7 +50,7 @@ const OperationsTable = () => {
 
   }
   useEffect(()=>{
-    getAllOperations(); //The comment above disable a eslint warning
+    getAllOperations(); //The comment below disable a eslint warning
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

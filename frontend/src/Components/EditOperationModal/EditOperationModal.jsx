@@ -1,9 +1,13 @@
 import React, { useState} from 'react';
+//ANTD
 import { Modal, Button, Input, Form, DatePicker, message } from 'antd';
-import {BsFillPencilFill} from 'react-icons/bs';
-import moment from 'moment';
+//COMPONENTS
 import useAuth from "../../hooks/useAuth";
 import config from '../../api';
+//MISC
+import {BsFillPencilFill} from 'react-icons/bs'; //Icons
+import moment from 'moment'; //date format
+
 const Axios = require('axios');
 
 const EditOperationModal = (props) => {

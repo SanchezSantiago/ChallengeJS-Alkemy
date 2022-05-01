@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import axios from "axios";
+//ANTD
 import { Modal, Button, message} from 'antd';
 import {BsFillTrashFill} from 'react-icons/bs'
+//COMPONENTS
 import useAuth from "../../hooks/useAuth";
 import config from '../../api';
-import axios from "axios";
 
 const DeleteOperation = (props) => {
   const {auth} = useAuth();
