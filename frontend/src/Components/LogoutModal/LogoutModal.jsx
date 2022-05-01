@@ -25,7 +25,7 @@ const LogoutModal = () => {
         Logout
       </Button>
       <Modal title="¿Logout?" visible={isModalVisible} footer={null} width='300px'>
-        <Button onClick={handleCancel} style={{marginLeft: '42px'}} >Logout</Button>
+        <Button onClick={handleCancel} style={{marginLeft: '42px'}} >Cancel</Button>
         <Button type="primary" onClick={handleOk} style={{marginLeft: '5px'}}>Logout</Button>
       </Modal>
     </>
